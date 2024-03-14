@@ -3,6 +3,7 @@ from typing import Tuple, Dict
 import logging
 import numpy as np
 import cv2
+import requests
 
 from pyautogui import (
     click,
@@ -17,11 +18,21 @@ w: int = 1335
 h: int = 750
 
 position_cache: Dict[str, Tuple[int, int]] = {}
+base_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/"
 
+def get_image(image: str) -> bool:
+    response = requests.get(base_url + image)
+    if response.status_code == 200:
+        with open(image, 'wb') as file:
+            file.write(response.content)
+        return True
+    return False
 
 def get_position(image: str) -> Tuple[int, int] | None:
     if image in position_cache:
         return position_cache[image]
+    if get_image(image):
+        logging.debug(f"Image {image} downloaded")
     try:
         if position := locateCenterOnScreen(image, confidence=.8):
             logging.debug(f"Position of {image}: {position}")
