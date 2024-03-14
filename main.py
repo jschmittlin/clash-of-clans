@@ -21,15 +21,15 @@ from utils.control_mouse import (
 NB_LOOPS: int = 1
 NB_ATTACKS: int = 10
 
-attaquer_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831165931556934/attaquer.PNG"
-trouver_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831167886229645/trouver.PNG"
-bb_dragon_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831166187536414/bb_dragon.PNG"
-capituler_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831166435135518/capituler.PNG"
-ok_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831166674075780/ok.PNG"
-rentrer_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831167563403305/rentrer.PNG"
-or_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831166917480468/or.PNG"
-recuperer_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831167273861200/recuperer.PNG"
-x_url: str = "https://cdn.discordapp.com/attachments/1039594104759271428/1217831168163188887/x.PNG"
+attaquer_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/attaquer.png"
+trouver_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/trouver.png"
+bb_dragon_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/bb_dragon.png"
+capituler_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/capituler.png"
+ok_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/ok.png"
+rentrer_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/renter.png"
+or_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/or.png"
+recuperer_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/recuperer.png"
+x_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/x.png"
 
 def script_int_mdo(x: int = NB_LOOPS, y: int = NB_ATTACKS) -> None:
     for _x in range(x):

@@ -55,8 +55,9 @@ def mouse_select_troop(image: str) -> None:
     mouseUp()
 
 def mouse_place_troop(image: str) -> None:
-    position: Tuple[int, int] | None = get_position(image)
-    click(position + (0, -150) or (325, 570))
+    if position := get_position(image):
+        position += (0, -150)
+    click(position or (325, 570))
     mouseUp()
     
 def mouse_surrender(image: str) -> None:
