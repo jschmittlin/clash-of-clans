@@ -4,6 +4,7 @@ import logging
 import numpy as np
 import cv2
 import requests
+import os
 
 from pyautogui import (
     click,
@@ -21,6 +22,10 @@ position_cache: Dict[str, Tuple[int, int]] = {}
 base_url: str = "https://raw.githubusercontent.com/jschmittlin/clash-of-clans/main/data/images/"
 
 def get_image(image: str) -> bool:
+    if os.path.exists(image):
+        logging.debug(f"Image {image} already exists")
+        return True
+        
     response = requests.get(base_url + image)
     if response.status_code == 200:
         with open(image, 'wb') as file:
@@ -32,7 +37,10 @@ def get_position(image: str) -> Tuple[int, int] | None:
     if image in position_cache:
         return position_cache[image]
     if get_image(image):
-        logging.debug(f"Image {image} downloaded")
+       logging.debug(f"Image {image} found")
+    else:
+        logging.error(f"Image {image} not found")
+        return None
     try:
         if position := locateCenterOnScreen(image, confidence=.8):
             logging.debug(f"Position of {image}: {position}")
@@ -65,10 +73,11 @@ def mouse_select_troop(image: str) -> None:
     click(get_position(image) or (325, 720))
     mouseUp()
 
-def mouse_place_troop(image: str) -> None:
-    if position := get_position(image):
-        position += (0, -150)
-    click(position or (325, 570))
+def mouse_place_troop() -> None:
+    click(100, h // 2)
+    click(w - 100, h // 2)
+    click(w // 2, 100)
+    click(w // 2, h - 100)
     mouseUp()
     
 def mouse_surrender(image: str) -> None:

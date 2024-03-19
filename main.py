@@ -18,15 +18,12 @@ from utils.control_mouse import (
     is_searching_for_oppenent
 )
 
-NB_LOOPS: int = 1
-NB_ATTACKS: int = 10
 
-
-def script_int_mdo(x: int = NB_LOOPS, y: int = NB_ATTACKS) -> None:
+def script_int_mdo(x: int, y: int) -> None:
     for _x in range(x):
-        logging.info(f"Loop {_x+1}/{NB_LOOPS}")
+        logging.info(f"Loop {_x+1}/{x}")
         for _y in range(y):
-            logging.info(f"Attack {_y+1}/{NB_ATTACKS}")
+            logging.info(f"Attack {_y+1}/{y}")
             mouse_attack("attaquer.png")
             time.sleep(.1)
             mouse_find_now("trouver.png")
@@ -39,8 +36,8 @@ def script_int_mdo(x: int = NB_LOOPS, y: int = NB_ATTACKS) -> None:
                     break
                 time.sleep(1)
             mouse_select_troop("bb_dragon.png")
-            mouse_place_troop("bb_dragon.png")                  # TODO: Find better position to place troop
-            time.sleep(.1)
+            mouse_place_troop()                                 # TODO: Find better position to place troop
+            time.sleep(.2)
             mouse_surrender("capituler.png")
             time.sleep(.1)
             mouse_okay("ok.png")
@@ -57,7 +54,7 @@ def script_int_mdo(x: int = NB_LOOPS, y: int = NB_ATTACKS) -> None:
 
 if __name__ == '__main__':
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format='[{asctime}] [{levelname:<8}] {name}: {message}', 
         style='{',
         datefmt='%Y-%m-%d %H:%M:%S'
